@@ -1,14 +1,14 @@
-<?php
+<?php declare(strict_types=1);
+
 session_start();
 
-if (!empty($_POST['value'])) {
-	
-	if (!isset($_SESSION['lg'])) {
-		$_SESSION['lg'] = $_POST['value'];
-	} else {
-		unset($_SESSION['lg']);
-		$_SESSION['lg'] = $_POST['value'];
-	}
+$method = $_SERVER['REQUEST_METHOD'];
 
-	echo json_encode($_SESSION['lg']);
+if ($method === 'POST') {
+    $lang = trim(filter_input(INPUT_POST, 'value'));
+    $lang = $lang ?? 'pt';
+    $messages = file_get_contents(__DIR__ . "/../messages/$lang.json");
+
+    header('Content-type: application/json');
+    echo $messages;
 }

@@ -1,31 +1,19 @@
-$(function (){
+$(function () {
     //AJAX EM PROCESSO02 SEGURADORA
-	$(document).on('click', '.value', function(e){
+    $(document).on('click', '.value', function (e) {
         e.preventDefault();
+        var value = $(this).val();
 
-		var value = $(this).val();
-
-		$.ajax({
+        $.ajax({
             type: 'POST',
             url: 'ajax.php',
-            data:{ value:value },
-            success:function(data){
-                let d = data.replace('"', '');
-                let dd = d.replace('"','');
-
-                if (dd == "pt") {
-                    $('.alert').html('Português');
-                    $('#home').html('Inicio');
-                    $('#service').html('Serviço');
-                    $('#contact').html('Contato');
-                } else {
-                    $('.alert').html('Inglês');
-                    $('#home').html('Home');
-                    $('#service').html('Service');
-                    $('#contact').html('Contact');
-                }
+            data: {value: value},
+            success: function (data) {
+                $('.alert').html(data[value]);
+                $('#home').html(data.home);
+                $('#service').html(data.service);
+                $('#contact').html(data.contact);
             }
         });
-	});
-
+    });
 });
