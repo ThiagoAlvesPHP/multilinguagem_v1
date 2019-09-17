@@ -1,17 +1,17 @@
 <?php
 session_start();
 /*https://github.com/statickidz/php-google-translate-free*/
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 use \Statickidz\GoogleTranslate;
 
 if (isset($_SESSION['lg'])) {
 	if ($_SESSION['lg'] == 'pt') {
-		require 'pt.php';
+		require '../pt.php';
 	} else {
-		require 'en.php';
+		require '../en.php';
 	}
 } else {
-	require 'pt.php';
+	require '../pt.php';
 }
 
 ?>
@@ -21,7 +21,7 @@ if (isset($_SESSION['lg'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Multilinguagem</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 </head>
 <body>
   	
@@ -30,17 +30,17 @@ if (isset($_SESSION['lg'])) {
 	    <div class="collapse navbar-collapse" id="navbar">
 	      <ul class="nav navbar-nav">
 	          <li class="dropdown">
-	            <a href="./" class="dropdown-toggle">
+	            <a href=".." class="dropdown-toggle">
 	            	<b id="home"><?=$lg['home']; ?></b>
 	            </a>
 	          </li>
 	          <li class="dropdown">
-	            <a href="./" class="dropdown-toggle">
+	            <a href=".." class="dropdown-toggle">
 	            	<b id="service"><?=$lg['service']; ?></b>
 	            </a>
 	          </li>
 	          <li class="dropdown">
-	            <a href="./" class="dropdown-toggle">
+	            <a href=".." class="dropdown-toggle">
 	            	<b id="contact"><?=$lg['contact']; ?></b>
 	            </a>
 	          </li>
@@ -118,9 +118,9 @@ if (isset($_SESSION['lg'])) {
 			<button class="btn btn-default">Traduzir</button>
 		</form>
 	</div>
-  	<script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+  	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
 
