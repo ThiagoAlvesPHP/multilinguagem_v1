@@ -4,4 +4,3 @@ $lg = array(
 	'service' => 'Serviço',
 	'contact' => 'Contato'
 );
-?>
