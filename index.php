@@ -73,7 +73,7 @@ if (isset($_SESSION['lg'])) {
 		</div>
 		<hr>
 		<?php
-		if (!empty($_POST['idioma']) && !empty($_POST['texto'])) {
+		if (!empty($_POST['idioma']) && !empty($_POST['texto'])):
 
 			if ($_POST['idioma'] == 'pt') {
 				$source = 'en';
@@ -87,9 +87,24 @@ if (isset($_SESSION['lg'])) {
 
 			$trans = new GoogleTranslate();
 			$result = $trans->translate($source, $target, $text);
-
-			echo '<p>'.$result.'</p>';
-		}
+			?>
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>Original</h3>
+					<p>
+						<?=htmlspecialchars($_POST['texto']); ?>
+					</p>
+				</div>
+				<div class="col-sm-6">
+					<h3>Traduzido</h3>
+					<p>
+						<?=htmlspecialchars($result); ?>
+					</p>
+				</div>
+			</div>
+			<hr>
+			<?php
+		endif;
 		?>
 		<form method="POST">
 			<label>Traduzir para</label>
