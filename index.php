@@ -1,7 +1,7 @@
 <?php
 session_start();
 /*https://github.com/statickidz/php-google-translate-free*/
-require 'vendor/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 use \Statickidz\GoogleTranslate;
 
 if (isset($_SESSION['lg'])) {
