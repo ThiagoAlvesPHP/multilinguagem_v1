@@ -1,5 +1,8 @@
 <?php
 session_start();
+/*https://github.com/statickidz/php-google-translate-free*/
+require 'vendor/vendor/autoload.php';
+use \Statickidz\GoogleTranslate;
 
 if (isset($_SESSION['lg'])) {
 	if ($_SESSION['lg'] == 'pt') {
@@ -68,6 +71,37 @@ if (isset($_SESSION['lg'])) {
 			}
 			?>
 		</div>
+		<hr>
+		<?php
+		if (!empty($_POST['idioma']) && !empty($_POST['texto'])) {
+
+			if ($_POST['idioma'] == 'pt') {
+				$source = 'en';
+				$target = 'pt';
+			} else {
+				$source = 'pt';
+				$target = 'en';
+			}
+			
+			$text = $_POST['texto'];
+
+			$trans = new GoogleTranslate();
+			$result = $trans->translate($source, $target, $text);
+
+			echo '<p>'.$result.'</p>';
+		}
+		?>
+		<form method="POST">
+			<label>Traduzir para</label>
+			<select class="form-control" required="" name="idioma">
+				<option value="en">Inglês</option>
+				<option value="pt">Português</option>
+			</select>
+			<label>Texto</label>
+			<textarea class="form-control" name="texto" required=""></textarea>
+			<br>
+			<button class="btn btn-default">Traduzir</button>
+		</form>
 	</div>
   	<script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
